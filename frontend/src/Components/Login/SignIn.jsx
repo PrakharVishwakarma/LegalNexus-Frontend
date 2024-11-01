@@ -37,17 +37,17 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div id='signinBox'>
+      <p style={{ margin: '0.4rem 0 0.6rem 0', fontSize: '2rem' }}>SignIn on LegalNexus</p>      
       {flashMessage && (
         <div className={`flash-message ${flashMessage.type}`}>
           {flashMessage.text}
         </div>
       )}
-      <form onSubmit={handleLogin}>
+      <form className='signFormBox' onSubmit={handleLogin}>
         <label>
           Role:
-          <select name="role" value={form.role} onChange={handleChange}>
+          <select style={{marginRight:'15.9rem'}} name="role" value={form.role} onChange={handleChange}>
             {roles.map((role) => (
               <option key={role} value={role}>{role}</option>
             ))}

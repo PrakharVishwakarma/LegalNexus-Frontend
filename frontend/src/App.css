@@ -1,10 +1,9 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+#root {
+  min-width: 100vw;
+  min-height: 100vh;
 }
-
+  
+/* 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -40,3 +39,150 @@
 .read-the-docs {
   color: #888;
 } */
+
+
+#registerBox{
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  width : 100vw;
+  height : 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#signupBox{
+  border: 0.11rem solid black;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 32rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem;
+  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+  background-blend-mode: screen;
+  
+}
+
+.signFormBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 30rem;
+  justify-content: space-evenly;
+}
+
+.signFormBox input{
+  width: 20rem;
+  height: 2rem;
+  align-self: self-end;
+  font-size: 1.05rem;
+  padding: 0.35rem;
+}
+
+.signFormBox label{
+  display: flex;
+  width: 30rem;
+  height: 2rem;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+#otpBox{
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  width : 100vw;
+  height : 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#verifyOtpBox{
+  border: 0.11rem solid black;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem;
+  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+  background-blend-mode: screen;
+}
+
+#loginBox{
+  background-image: linear-gradient(to top, #e6c2fb 0%, #a6c1ee 100%);
+  width : 100vw;
+  height : 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#signinBox{
+  border: 0.11rem solid black;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 23rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem;
+  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+  background-blend-mode: screen;
+}
+
+/* Flash message container */
+.flash-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDown 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+/* Success Message Styling */
+.flash-message.success {
+  background-color: #28a745; /* Green for success */
+  border: 1px solid #218838;
+}
+
+/* Error Message Styling */
+.flash-message.error {
+  background-color: #dc3545; /* Red for error */
+  border: 1px solid #c82333;
+}
+
+/* Animation for sliding down the message */
+@keyframes slideDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Animation for fading out the message */
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}

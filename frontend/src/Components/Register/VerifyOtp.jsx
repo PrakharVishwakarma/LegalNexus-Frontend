@@ -49,14 +49,14 @@ const VerifyOtp = () => {
   };
 
   return (
-    <div>
+    <div id='verifyOtpBox'>
       <h2>OTP Verification</h2>
       {flashMessage && (
         <div className={`flash-message ${flashMessage.type}`}>
           {flashMessage.text}
         </div>
       )}
-      <form onSubmit={(e) => { e.preventDefault(); handleOtpSubmit(); }}>
+      <form onSubmit={(e) => { e.preventDefault(); handleOtpSubmit(); }} className='signFormBox'>
         <label>
           OTP:
           <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} required maxLength="6" />

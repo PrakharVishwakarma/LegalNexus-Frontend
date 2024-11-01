@@ -4,7 +4,8 @@ const Register = () => {
   
     return (
       <div id="registerBox">
-        Register Page.
+        <h2>Register Page.</h2>
+        
         <SignUpform></SignUpform>
       </div>
     );

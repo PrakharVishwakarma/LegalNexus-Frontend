@@ -3,7 +3,7 @@ import VerifyOtp from "../Components/Register/VerifyOtp";
 const OtpVerification = () => {
   
     return (
-      <div>
+      <div id="otpBox"> 
         <VerifyOtp></VerifyOtp>
       </div>
     );

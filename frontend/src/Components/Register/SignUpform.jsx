@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const roles = ['Civilian', 'Judge', 'Lawyer', 'Police'];
 
 const Signup = () => {
@@ -18,16 +19,13 @@ const Signup = () => {
   });
   const [flashMessage, setFlashMessage] = useState(null);
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  // Conditionally render `userId` or `employeeId`
   const isCivilian = form.role === 'Civilian';
 
-  // Handle form submission
   const handleSignup = async () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/user/signup', form);
@@ -38,18 +36,19 @@ const Signup = () => {
     }
   };
 
+
   return (
-    <div>
-      <h2>Signup</h2>
+    <div id='signupBox'>
+      <p style={{margin:'0.4rem 0 0.6rem 0', fontSize:'2rem'}}>Signup on LegalNexus</p>
       {flashMessage && (
         <div className={`flash-message ${flashMessage.type}`}>
           {flashMessage.text}
         </div>
       )}
-      <form onSubmit={(e) => { e.preventDefault(); handleSignup(); }}>
+      <form onSubmit={(e) => { e.preventDefault(); handleSignup(); }} className='signFormBox'>
         <label>
           Role:
-          <select name="role" value={form.role} onChange={handleChange}>
+          <select style={{marginRight:'15.9rem'}} name="role" value={form.role} onChange={handleChange}>
             {roles.map((role) => (
               <option key={role} value={role}>{role}</option>
             ))}
@@ -88,6 +87,7 @@ const Signup = () => {
         </label>
         <button type="submit">Register</button>
       </form>
+
     </div>
   );
 };
