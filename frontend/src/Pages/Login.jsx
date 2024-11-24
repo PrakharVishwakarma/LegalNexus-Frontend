@@ -1,13 +1,18 @@
 import SignIn from "../Components/Login/SignIn";
 
 const Login = () => {
-  
-    return (
-      <div id="loginBox">
-        <h2>Login Page</h2>
-        <SignIn></SignIn>        
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+      <div className="hidden lg:block bg-fuchsia-200" id="AuthDesc">
+
       </div>
-    );
-  };
-  
-  export default Login;
+      <div className="flex justify-center items-center" id="loginBox">
+        <SignIn></SignIn>
+      </div>
+
+    </div>
+  );
+};
+
+export default Login;

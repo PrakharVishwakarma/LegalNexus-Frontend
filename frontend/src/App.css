@@ -3,7 +3,7 @@
   min-height: 100vh;
 }
   
-/* 
+/*  
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -42,26 +42,22 @@
 
 
 #registerBox{
-  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
-  width : 100vw;
-  height : 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  background-color: rgb(255, 244, 230);
 }
 
 #signupBox{
-  border: 0.11rem solid black;
-  border-radius: 1rem;
-  width: 40rem;
-  height: 32rem;
+  width: 35rem;
+  height: 33rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0.35rem;
-  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
   background-blend-mode: screen;
+  background-color: rgb(216, 231, 253);
   
 }
 
@@ -69,7 +65,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: 26rem;
   width: 30rem;
   justify-content: space-evenly;
 }
@@ -80,6 +76,7 @@
   align-self: self-end;
   font-size: 1.05rem;
   padding: 0.35rem;
+  background-color: white;
 }
 
 .signFormBox label{
@@ -109,31 +106,26 @@
   flex-direction: column;
   align-items: center;
   padding: 0.35rem;
-  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
   background-blend-mode: screen;
 }
 
 #loginBox{
-  background-image: linear-gradient(to top, #e6c2fb 0%, #a6c1ee 100%);
-  width : 100vw;
-  height : 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  background-color: rgb(255, 247, 234);
 }
-
+#AuthDesc{
+  background-color:rgb(245 208 254)
+}
 #signinBox{
-  border: 0.11rem solid black;
-  border-radius: 1rem;
-  width: 40rem;
-  height: 23rem;
+  width: 33rem;
+  height: 24rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0.35rem;
-  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
-  background-blend-mode: screen;
+  /* background-color: rgb(228, 239, 255); */
+  background-color:snow;
+  background-color: rgb(216, 231, 253);
+
 }
 
 /* Flash message container */
@@ -186,3 +178,134 @@
       opacity: 0;
   }
 }
+
+
+/* Animation up down */
+.up-down{
+  animation: float 2.5s ease-in-out infinite;
+}
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(16, 15, 15, 0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-15px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+.up-down:hover, .up-down:focus-within {
+   animation: none;
+}
+
+/* .up-down{
+  animation: up-down linear 4s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+  -webkit-animation: up-down linear 4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 50%;
+  -moz-animation: up-down linear 4s;
+  -moz-animation-iteration-count: infinite;
+  -moz-transform-origin: 50% 50%;
+  -o-animation: up-down linear 4s;
+  -o-animation-iteration-count: infinite;
+  -o-transform-origin: 50% 50%;
+  -ms-animation: up-down linear 4s;
+  -ms-animation-iteration-count: infinite;
+  -ms-transform-origin: 50% 50%;
+}
+
+@keyframes up-down{
+  0% {
+    transform:  translate(1px,20px)  ;
+  }
+  24% {
+    transform:  translate(1px,30px)  ;
+  }
+  50% {
+    transform:  translate(1px,12px)  ;
+  }
+  74% {
+    transform:  translate(1px,22px)  ;
+  }
+  100% {
+    transform:  translate(1px,22px)  ;
+  }
+}
+
+@-moz-keyframes up-down{
+  0% {
+    -moz-transform:  translate(1px,20px)  ;
+  }
+  24% {
+    -moz-transform:  translate(1px,30px)  ;
+  }
+  50% {
+    -moz-transform:  translate(1px,12px)  ;
+  }
+  74% {
+    -moz-transform:  translate(1px,22px)  ;
+  }
+  100% {
+    -moz-transform:  translate(1px,22px)  ;
+  }
+}
+
+@-webkit-keyframes up-down {
+  0% {
+    -webkit-transform:  translate(1px,20px)  ;
+  }
+  24% {
+    -webkit-transform:  translate(1px,30px)  ;
+  }
+  50% {
+    -webkit-transform:  translate(1px,12px)  ;
+  }
+  74% {
+    -webkit-transform:  translate(1px,22px)  ;
+  }
+  100% {
+    -webkit-transform:  translate(1px,22px)  ;
+  }
+}
+
+@-o-keyframes up-down {
+  0% {
+    -o-transform:  translate(1px,20px)  ;
+  }
+  24% {
+    -o-transform:  translate(1px,30px)  ;
+  }
+  50% {
+    -o-transform:  translate(1px,12px)  ;
+  }
+  74% {
+    -o-transform:  translate(1px,22px)  ;
+  }
+  100% {
+    -o-transform:  translate(1px,22px)  ;
+  }
+}
+
+@-ms-keyframes up-down {
+  0% {
+    -ms-transform:  translate(1px,20px)  ;
+  }
+  24% {
+    -ms-transform:  translate(1px,30px)  ;
+  }
+  50% {
+    -ms-transform:  translate(1px,12px)  ;
+  }
+  74% {
+    -ms-transform:  translate(1px,22px)  ;
+  }
+  100% {
+    -ms-transform:  translate(1px,22px)  ;
+  }
+} */
