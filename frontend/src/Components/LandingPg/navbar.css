@@ -1,0 +1,150 @@
+.navbar {
+  width: 100%;
+  background-color: var(--main-bg-color);
+  padding: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.nav-elements {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-elements ul {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+}
+
+.nav-elements ul li a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-elements ul li a.active {
+  color: var(--accent-color);
+}
+
+.nav-elements ul li a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.auth-buttons .btn-signin,
+.auth-buttons .btn-signup {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-buttons .btn-signin {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.auth-buttons .btn-signup {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.auth-buttons .btn-signin:hover {
+  background-color: var(--accent-color);
+}
+
+.auth-buttons .btn-signup:hover {
+  background-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 970px) {
+  .auth-buttons {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-elements {
+    position: fixed;
+    top: 3rem;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    flex-direction: column;
+    background-color: var(--main-bg-color);
+    padding: 2rem 1rem;
+    transform: translateX(0);
+  }
+
+  .nav-elements.active {
+    right: 0;
+  }
+
+  .nav-elements ul {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .auth-buttons {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-elements ul li a {
+    font-size: 0.9rem;
+  }
+
+  .auth-buttons .btn-signin,
+  .auth-buttons .btn-signup {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

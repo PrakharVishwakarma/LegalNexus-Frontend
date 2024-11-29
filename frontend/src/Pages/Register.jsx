@@ -8,6 +8,7 @@ const Register = () => {
       <SignUpform></SignUpform>
     </div>
     <div className="hidden lg:block bg-fuchsia-200">
+        
     </div>
   </div>
   );
