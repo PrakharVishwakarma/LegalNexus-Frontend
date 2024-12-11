@@ -1,7 +1,9 @@
 .navbar {
   width: 100%;
-  background-color: var(--main-bg-color);
-  padding: 0.8rem;
+  /* background-color: var(--main-bg-color);s */
+  background-color: rgb(129, 197, 206);
+  /* background-color: rgb(69,70,121); */
+  padding: 0.6rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -14,12 +16,14 @@
   align-items: center;
   max-width: 100%;
   margin: 0 auto;
+  
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--primary-color);
+  /* color: white; */
 }
 
 .menu-icon {
@@ -27,12 +31,14 @@
   font-size: 1.8rem;
   cursor: pointer;
   color: var(--primary-color);
+  /* color: white; */
 }
 
 .nav-elements {
   display: flex;
   align-items: center;
   transition: transform 0.3s ease-in-out;
+
 }
 
 .nav-elements ul {
@@ -44,6 +50,7 @@
 .nav-elements ul li a {
   text-decoration: none;
   color: var(--primary-color);
+  /* color: white; */
   font-size: 1rem;
   font-weight: 500;
   position: relative;
@@ -51,6 +58,7 @@
 
 .nav-elements ul li a.active {
   color: var(--accent-color);
+  /* color: rgb(218, 203, 203); */
 }
 
 .nav-elements ul li a.active::after {

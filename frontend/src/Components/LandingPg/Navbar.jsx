@@ -1,16 +1,43 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import "./navbar.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [showNavbar, setShowNavbar] = useState(false);
 
     const handleShowNavbar = () => {
         setShowNavbar(!showNavbar);
+    };
+
+    // Determine which buttons to render based on the current route
+    const renderAuthButtons = () => {
+        if (location.pathname === "/register") {
+            return (
+                <button className="btn-signin" onClick={() => navigate('/login')}>
+                    Sign In
+                </button>
+            );
+        } else if (location.pathname === "/login") {
+            return (
+                <button className="btn-signup" onClick={() => navigate('/register')}>
+                    Sign Up
+                </button>
+            );
+        } else {
+            return (
+                <>
+                    <button className="btn-signin" onClick={() => navigate('/login')}>
+                        Sign In
+                    </button>
+                    <button className="btn-signup" onClick={() => navigate('/register')}>
+                        Sign Up
+                    </button>
+                </>
+            );
+        }
     };
 
     return (
@@ -62,9 +89,9 @@ const Navbar = () => {
                     </ul>
                 </div>
 
+                {/* Authentication Buttons */}
                 <div className="auth-buttons">
-                    <button className="btn-signin" onClick={() => { navigate('/login') }}>Sign In</button>
-                    <button className="btn-signup" onClick={() => { navigate('/register') }}>Sign Up</button>
+                    {renderAuthButtons()}
                 </div>
             </div>
         </nav>

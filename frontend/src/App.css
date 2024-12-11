@@ -14,45 +14,10 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  min-width: 100vw;
+  /* min-width: 100vw; */
   min-height: 100vh;
 }
-/*  
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
 
 #registerBox {
   display: flex;
@@ -63,7 +28,7 @@ body {
 }
 
 #signupBox {
-  width: 35rem;
+  width: 32rem;
   height: 33rem;
   display: flex;
   flex-direction: column;
@@ -128,7 +93,7 @@ body {
   background-color: rgb(245 208 254);
 }
 #signinBox {
-  width: 33rem;
+  width: 32rem;
   height: 24rem;
   display: flex;
   flex-direction: column;
@@ -213,110 +178,4 @@ body {
   animation: none;
 }
 
-/* .up-down{
-  animation: up-down linear 4s;
-  animation-iteration-count: infinite;
-  transform-origin: 50% 50%;
-  -webkit-animation: up-down linear 4s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-transform-origin: 50% 50%;
-  -moz-animation: up-down linear 4s;
-  -moz-animation-iteration-count: infinite;
-  -moz-transform-origin: 50% 50%;
-  -o-animation: up-down linear 4s;
-  -o-animation-iteration-count: infinite;
-  -o-transform-origin: 50% 50%;
-  -ms-animation: up-down linear 4s;
-  -ms-animation-iteration-count: infinite;
-  -ms-transform-origin: 50% 50%;
-}
 
-@keyframes up-down{
-  0% {
-    transform:  translate(1px,20px)  ;
-  }
-  24% {
-    transform:  translate(1px,30px)  ;
-  }
-  50% {
-    transform:  translate(1px,12px)  ;
-  }
-  74% {
-    transform:  translate(1px,22px)  ;
-  }
-  100% {
-    transform:  translate(1px,22px)  ;
-  }
-}
-
-@-moz-keyframes up-down{
-  0% {
-    -moz-transform:  translate(1px,20px)  ;
-  }
-  24% {
-    -moz-transform:  translate(1px,30px)  ;
-  }
-  50% {
-    -moz-transform:  translate(1px,12px)  ;
-  }
-  74% {
-    -moz-transform:  translate(1px,22px)  ;
-  }
-  100% {
-    -moz-transform:  translate(1px,22px)  ;
-  }
-}
-
-@-webkit-keyframes up-down {
-  0% {
-    -webkit-transform:  translate(1px,20px)  ;
-  }
-  24% {
-    -webkit-transform:  translate(1px,30px)  ;
-  }
-  50% {
-    -webkit-transform:  translate(1px,12px)  ;
-  }
-  74% {
-    -webkit-transform:  translate(1px,22px)  ;
-  }
-  100% {
-    -webkit-transform:  translate(1px,22px)  ;
-  }
-}
-
-@-o-keyframes up-down {
-  0% {
-    -o-transform:  translate(1px,20px)  ;
-  }
-  24% {
-    -o-transform:  translate(1px,30px)  ;
-  }
-  50% {
-    -o-transform:  translate(1px,12px)  ;
-  }
-  74% {
-    -o-transform:  translate(1px,22px)  ;
-  }
-  100% {
-    -o-transform:  translate(1px,22px)  ;
-  }
-}
-
-@-ms-keyframes up-down {
-  0% {
-    -ms-transform:  translate(1px,20px)  ;
-  }
-  24% {
-    -ms-transform:  translate(1px,30px)  ;
-  }
-  50% {
-    -ms-transform:  translate(1px,12px)  ;
-  }
-  74% {
-    -ms-transform:  translate(1px,22px)  ;
-  }
-  100% {
-    -ms-transform:  translate(1px,22px)  ;
-  }
-} */
