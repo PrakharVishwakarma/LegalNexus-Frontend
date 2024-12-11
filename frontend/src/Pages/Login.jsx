@@ -16,6 +16,7 @@ const Login = () => {
 
         <div className="hidden lg:block bg-fuchsia-200" id="AuthDesc">
           <div className="w-full h-full flex justify-center items-center">
+            
             <div className="w-9/12 h-10/12 overflow-hidden">
               <img src={SignInLN} alt="SignIn Graphics" className="w-full h-full object-contain" />
             </div>

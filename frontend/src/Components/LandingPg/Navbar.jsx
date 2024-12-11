@@ -44,7 +44,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="container">
                 {/* Logo Section */}
-                <div className="logo">
+                <div className="logo ">
                     Legal Nexus
                 </div>
 

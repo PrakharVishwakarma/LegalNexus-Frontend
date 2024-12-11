@@ -38,7 +38,7 @@ const SummaryCard = ({ title, value, color, description }) => (
 const DashboardSummary = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <SummaryCard title="Total Documents" value={150} color="border-blue-600" description="All documents in the system." />
-        <SummaryCard title="In-Process Documents" value={25} color="border-yellow-500" description="Currently being reviewed." />
+        <SummaryCard title="In-Process Documents" value={30} color="border-yellow-500" description="Currently being reviewed." />
         <SummaryCard title="Checked Documents" value={120} color="border-green-500" description="Completed and verified." />
     </div>
 );

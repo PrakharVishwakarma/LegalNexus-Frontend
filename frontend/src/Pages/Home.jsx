@@ -10,8 +10,8 @@ const Home = () => {
     <div>
       <Navbar></Navbar>
       <Headsection></Headsection> 
-      {/* <Newsletter></Newsletter>  
-      <Footer></Footer> */}
+      <Newsletter></Newsletter>  
+      {/* <Footer></Footer> */}
     </div>
   );
 };

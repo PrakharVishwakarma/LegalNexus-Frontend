@@ -35,6 +35,7 @@
     typewriter 5s steps(50) 1s 1 normal both, 
     blinkingCursor 500ms steps(50) infinite normal;
 }
+
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }
