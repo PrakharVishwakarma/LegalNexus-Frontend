@@ -1,6 +1,7 @@
 .up-down-Home {
   animation: float 2.5s ease-in-out infinite;
 }
+
 @keyframes float {
   0% {
     transform: translatey(0px);
@@ -17,30 +18,42 @@
   animation: none;
 }
 
-/* Cursor */
-.cursor{
-    position: relative;
-    width: 24em;
-    margin: 0 auto;
-    border-right: 2px solid rgba(255,255,255,.75);
-    font-size: 30px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    transform: translateY(-50%);    
+/* Cursor Styling */
+.cursor {
+  margin: 0 auto;
+  border-right: 2px solid rgba(0, 0, 0, 0.75); /* Blinking cursor */
+  font-size: 1.875rem; /* Equivalent to 30px, responsive-friendly */
+  text-align: center;
+  white-space: nowrap; /* Prevents text wrapping */
+  overflow: hidden; /* Ensures text is hidden during animation */
 }
+
 /* Animation */
 .typewriter-animation {
   animation: 
-    typewriter 5s steps(50) 1s 1 normal both, 
-    blinkingCursor 500ms steps(50) infinite normal;
+    typewriter 4s steps(50, end) 1s 1 normal both, /* Typing effect */
+    blinkingCursor 500ms steps(50, start) infinite normal; /* Cursor blink */
 }
 
+/* Typing Effect */
 @keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
-@keyframes blinkingCursor{
-  from { border-right-color: rgba(255,255,255,.75); }
-  to { border-right-color: transparent; }
+
+/* Cursor Blink Effect */
+@keyframes blinkingCursor {
+  0% {
+    border-right-color: rgba(0, 0, 0, 0.75);
+  }
+  50% {
+    border-right-color: transparent;
+  }
+  100% {
+    border-right-color: rgba(0, 0, 0, 0.75);
+  }
 }
