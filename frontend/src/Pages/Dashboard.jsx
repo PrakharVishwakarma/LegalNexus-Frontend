@@ -1,101 +1,117 @@
-import React from 'react';
+// src/Pages/Dashboard.jsx
+import { useEffect, useState } from "react";
 
-// Navbar Component
-const Navbar = () => (
-    <nav className="bg-blue-600 p-4 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-white text-2xl font-bold">Legal Nexus</h1>
-            <div className="text-white space-x-4">
-                <a href="#" className="hover:underline">Home</a>
-                <a href="#" className="hover:underline">Profile</a>
-                <a href="#" className="hover:underline">Logout</a>
+import axios from "axios";
+
+import NavBarDash from "../Components/Dashboard/NavBarDash";
+
+const Dashboard = () => {
+  const [user, setUser] = useState(null);
+  const [flashMessage, setFlashMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setFlashMessage({
+          type: "error",
+          text: "You are not authenticated. Please login first.",
+        });
+        return;
+      }
+
+      try {
+        const res = await axios.get("http://localhost:3000/api/v1/user/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUser(res.data);
+        setFlashMessage({
+          type: "success",
+          text: "Welcome back! Your dashboard is loaded.",
+        });
+      } catch (error) {
+        const errorMessage =
+          error.response?.data?.message || "Something went wrong.";
+        setFlashMessage({ type: "error", text: errorMessage });
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  const handleCloseFlash = () => {
+    setFlashMessage(null);
+  };
+
+  return (
+    <>
+      <NavBarDash />
+      <div className="min-h-screen bg-gray-100 p-8">
+        {flashMessage && (
+          <div
+            className={`flash-message ${flashMessage.type === "success" ? "bg-green-500" : "bg-red-500"
+              } text-white px-6 py-3 rounded-md shadow-md flex justify-between items-center mb-6 transition-all duration-300`}
+          >
+            <span>{flashMessage.text}</span>
+            <button
+              onClick={handleCloseFlash}
+              className="text-lg font-bold hover:text-gray-300"
+            >
+              &times;
+            </button>
+          </div>
+        )}
+
+        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">
+            👤 User Profile
+          </h1>
+
+          {!user ? (
+            <p className="text-gray-600 text-center">Loading user info...</p>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 text-gray-700 text-base">
+              <p>
+                <strong>Full Name:</strong> {user.firstName} {user.lastName}
+              </p>
+              <p>
+                <strong>Role:</strong> {user.role}
+              </p>
+              <p>
+                <strong>Phone:</strong> {user.phoneNumber}
+              </p>
+              {user.userId && (
+                <p>
+                  <strong>User ID:</strong> {user.userId}
+                </p>
+              )}
+              {user.employeeId && (
+                <p>
+                  <strong>Employee ID:</strong> {user.employeeId}
+                </p>
+              )}
+              <p>
+                <strong>Aadhar:</strong> {user.aadharNumber}
+              </p>
+              <p>
+                <strong>Status:</strong>{" "}
+                <span
+                  className={`font-semibold ${user.isVerified ? "text-green-600" : "text-red-600"
+                    }`}
+                >
+                  {user.isVerified ? "Verified" : "Not Verified"}
+                </span>
+              </p>
             </div>
+          )}
         </div>
-    </nav>
-);
-
-// Sidebar Component
-const Sidebar = () => (
-    <aside className="bg-blue-100 w-64 h-screen p-4 shadow-md">
-        <ul className="space-y-4">
-            <li><a href="#" className="block p-3 bg-blue-500 text-white rounded hover:bg-blue-600">Dashboard</a></li>
-            <li><a href="#" className="block p-3 bg-gray-200 rounded hover:bg-gray-300">Documents</a></li>
-            <li><a href="#" className="block p-3 bg-gray-200 rounded hover:bg-gray-300">Users</a></li>
-            <li><a href="#" className="block p-3 bg-gray-200 rounded hover:bg-gray-300">Settings</a></li>
-        </ul>
-    </aside>
-);
-
-// Summary Card Component
-const SummaryCard = ({ title, value, color, description }) => (
-    <div className={`bg-white p-6 shadow rounded-lg border-l-4 ${color}`}>
-        <h2 className="text-lg font-semibold text-gray-700">{title}</h2>
-        <p className="text-3xl font-bold mt-2">{value}</p>
-        <p className="text-sm text-gray-500 mt-1">{description}</p>
-    </div>
-);
-
-const DashboardSummary = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <SummaryCard title="Total Documents" value={150} color="border-blue-600" description="All documents in the system." />
-        <SummaryCard title="In-Process Documents" value={30} color="border-yellow-500" description="Currently being reviewed." />
-        <SummaryCard title="Checked Documents" value={120} color="border-green-500" description="Completed and verified." />
-    </div>
-);
-
-// Users Table Component
-const UsersTable = () => (
-    <div className="overflow-x-auto mt-4">
-        <table className="w-full border-collapse border border-gray-200">
-            <thead>
-                <tr className="bg-gray-50">
-                    <th className="border border-gray-300 p-3 text-left">User ID</th>
-                    <th className="border border-gray-300 p-3 text-left">Name</th>
-                    <th className="border border-gray-300 p-3 text-left">Email</th>
-                    <th className="border border-gray-300 p-3 text-left">Role</th>
-                    <th className="border border-gray-300 p-3 text-left">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td className="border border-gray-300 p-3">001</td>
-                    <td className="border border-gray-300 p-3">John Doe</td>
-                    <td className="border border-gray-300 p-3">john.doe@example.com</td>
-                    <td className="border border-gray-300 p-3">Editor</td>
-                    <td className="border border-gray-300 p-3">
-                        <button className="text-white bg-blue-500 px-3 py-1 rounded hover:bg-blue-600">Edit</button>
-                        <button className="text-white bg-red-500 px-3 py-1 rounded hover:bg-red-600 ml-2">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="border border-gray-300 p-3">002</td>
-                    <td className="border border-gray-300 p-3">Jane Smith</td>
-                    <td className="border border-gray-300 p-3">jane.smith@example.com</td>
-                    <td className="border border-gray-300 p-3">Viewer</td>
-                    <td className="border border-gray-300 p-3">
-                        <button className="text-white bg-blue-500 px-3 py-1 rounded hover:bg-blue-600">Edit</button>
-                        <button className="text-white bg-red-500 px-3 py-1 rounded hover:bg-red-600 ml-2">Delete</button>
-                    </td>
-                </tr>
-                {/* Add more rows as necessary */}
-            </tbody>
-        </table>
-    </div>
-);
-
-// Main Dashboard Component
-const Dashboard = () => (
-    <div className="bg-gray-100 min-h-screen flex">
-        <Sidebar />
-        <div className="flex-1 p-6 space-y-8">
-            <Navbar />
-            <DashboardSummary />
-            <div className="bg-white p-6 shadow rounded-lg">
-                <h2 className="text-xl font-semibold text-gray-700">Users with Roles</h2>
-                <UsersTable />
-            </div>
-        </div>
-    </div>
-);
+      </div>
+    </>
+  );
+};
 
 export default Dashboard;

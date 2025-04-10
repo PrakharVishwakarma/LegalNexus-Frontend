@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const Signup = () => {
 
   return (
     <div id='signupBox' className='up-down shadow-xl hover:shadow-blue-500/60 rounded-lg'>
-      <p style={{ margin: '0.4rem 0 0.6rem 0', fontSize: '2.2rem', fontWeight:'bold' }}>Signup on LegalNexus</p>
+      <p style={{ margin: '0.4rem 0 0.6rem 0', fontSize: '2.2rem', fontWeight: 'normal' }}>Signup on LegalNexus</p>
       {flashMessage && (
         <div className={`flash-message ${flashMessage.type}`}>
           {flashMessage.text}

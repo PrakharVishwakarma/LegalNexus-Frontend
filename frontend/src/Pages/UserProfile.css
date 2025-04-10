@@ -1,0 +1,100 @@
+/* UserProfile.css */
+
+/* Styling for the modal content */
+.user-profile-modal {
+  position: fixed;
+  top: 4rem;
+  right: 3%; /* Start off-screen */
+  width: 400px; /* Adjust width as needed */
+  height: 100%;
+  background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  transition: right 0.5s ease, box-shadow 0.5s ease; /* Add transition for smooth animation */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Styling for the active state of the modal */
+.user-profile-modal.active {
+  right: 0; /* Move to visible position */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); /* Enhance shadow when active */
+}
+
+/* Additional styles for the content inside the modal */
+.App {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Change flex-direction to column */
+  align-items: center; /* Center content horizontally */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for entering the visible position */
+.user-profile-modal.active {
+  animation: slideInRight 0.5s forwards, fadeIn 0.5s forwards; /* Add fadeIn animation */
+}
+
+/* Animation keyframes for sliding in from the right */
+@keyframes slideInRight {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+/* Animation keyframes for fading in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.user-info-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userinfo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.userinfo > div {
+  flex: 1;
+  margin: 10px;
+}
+
+.userinfo h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.userinfo img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .userinfo {
+    flex-direction: column;
+  }
+
+  .userinfo > div {
+    margin: 10px 0;
+  }
+}
+
+/* Add more styles as needed */

@@ -3,6 +3,7 @@ import Navbar from "../Components/LandingPg/Navbar";
 import Headsection from "../Components/LandingPg/Headsection";
 import Footer from "../Components/LandingPg/Footer";
 import Newsletter from "./Newsletter";
+import OurServe from "../Components/LandingPg/OurServe";
 
 const Home = () => {
 
@@ -11,6 +12,7 @@ const Home = () => {
       <Navbar></Navbar>
       <Headsection></Headsection> 
       <Newsletter></Newsletter>  
+      <OurServe></OurServe>
       <Footer></Footer>
     </div>
   );
