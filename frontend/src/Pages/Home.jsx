@@ -1,3 +1,5 @@
+// /frontend/src/Pages/Home.jsx
+
 import Navbar from "../Components/LandingPg/Navbar";
 
 import Headsection from "../Components/LandingPg/Headsection";

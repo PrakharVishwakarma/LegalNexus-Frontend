@@ -1,14 +1,20 @@
+// /frontend/frontend/src/utils/ProtectedRoute.jsx
+
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import PropTypes from "prop-types";
 
 const PublicOnlyRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
+    if (isAuthenticated) {
+        return <Navigate to="/dashboard" replace />;
+    }
 
-  return children;
+    return children;
 };
 
+PublicOnlyRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 export default PublicOnlyRoute;

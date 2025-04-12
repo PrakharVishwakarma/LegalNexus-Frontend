@@ -1,7 +1,10 @@
+// frontend/src/Components/Dashboard/NavBarDash.jsx
+
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../context/useAuth";
+import WalletConnect from "./WalletConnect";
 
 const NavBarDash = () => {
   const navigate = useNavigate();
@@ -41,6 +44,9 @@ const NavBarDash = () => {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-2xl font-bold tracking-wide">Legal Nexus</h1>
+
+        {/* wallet */}
+        <WalletConnect/>
 
         {/* Right Side Icons */}
         <div className="flex items-center gap-6">

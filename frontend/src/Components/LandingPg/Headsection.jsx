@@ -8,7 +8,7 @@ import MainHeadPng from "../../assets/compressmainHead.png";
 
 const Headsection = () => {
   return (
-    <div className="h-[47rem] w-full grid grid-cols-4 lg:grid-cols-6 bg-cyan-50">
+    <div className="h-[46rem] w-full grid grid-cols-4 lg:grid-cols-6 bg-cyan-50">
       {/* Left Section */}
       <div className="hidden lg:block col-span-1 ">
         <div className="w-full h-full flex flex-col justify-between py-20">

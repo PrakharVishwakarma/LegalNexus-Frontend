@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/useAuth';
 
 const roles = ['Admin', 'Civilian', 'Judge', 'Lawyer', 'Police'];
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); 
+
   const [form, setForm] = useState({
     role: 'Civilian',  // Default role
     identifier: '',
@@ -30,8 +33,8 @@ const SignIn = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/user/signin', form);
       setFlashMessage({ type: 'success', text: 'Login successful!' });
-      localStorage.setItem('token', response.data.token); // Store token
-      navigate('/dashboard'); // Redirect to dashboard
+      login(response.data.token); // ✅ Set token via context
+      navigate('/dashboard');     // ✅ Redirect after context update
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
       setFlashMessage({ type: 'error', text: errorMessage });
