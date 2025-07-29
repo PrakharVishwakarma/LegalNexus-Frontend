@@ -1,15 +1,15 @@
 import Lottie from "lottie-react";
 
-import lottieNewsLetter1 from '../assets/lottie/lottieNewsLetter1.json'
+import lottieNewsLetter1 from '../../assets/lottie/lottieNewsLetter1.json'
 
 
 const Newsletter = () => {
   return (
-    <div className="flex w-full h-[40rem]">
-      <div className="flex justify-center content-end w-5/12">
-      <Lottie animationData={lottieNewsLetter1} loop={true} />
+    <div className="flex w-full h-[35rem] bg-gray-50 justify-center p-14">
+      <div className="flex justify-center content-end w-3/12">
+        <Lottie animationData={lottieNewsLetter1} loop={true} width={0.7}/>
       </div>
-      <section className="newsletter-wrapper bg-gray-50 w-7/12 flex flex-col justify-center">
+      <section className="newsletter-wrapper w-8/12 flex flex-col justify-center">
         <div className="max-w-6xl mx-auto text-center h-fit">
           {/* Header Section */}
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-800">

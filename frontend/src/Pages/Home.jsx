@@ -4,7 +4,7 @@ import Navbar from "../Components/LandingPg/Navbar";
 
 import Headsection from "../Components/LandingPg/Headsection";
 import Footer from "../Components/LandingPg/Footer";
-import Newsletter from "./Newsletter";
+import Newsletter from "../Components/LandingPg/Newsletter";
 import OurServe from "../Components/LandingPg/OurServe";
 
 const Home = () => {

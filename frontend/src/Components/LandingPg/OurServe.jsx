@@ -1,22 +1,24 @@
+// frontend/src/Components/LandingPg/OurServe.jsx
+
 import { useState, useEffect } from "react";
 import "./OurServe.css";
+import serveSvg1 from "../../assets/serveSvg1.svg";
+import serveJpg2 from "../../assets/serveJpg2.jpg";
+import serveJpg3 from "../../assets/serveJpeg3.jpg";
 
 const slides = [
   {
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85",
+    image: serveSvg1,
     title: "Shaun Matthews",
     caption: "Lorem Ipsum has been the industry's standard dummy text...",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85",
+    image: serveJpg2,
     title: "Alexis Berry",
     caption: "Lorem Ipsum has been the industry's standard dummy text...",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85",
+    image: serveJpg3,
     title: "Billie Pierce",
     caption: "Lorem Ipsum has been the industry's standard dummy text...",
   },
@@ -33,7 +35,7 @@ const OurServe = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [totalSlides]);
 
   const handleNext = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);

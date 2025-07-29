@@ -1,42 +1,27 @@
-import { useEffect, useState } from "react";
+// frontend/src/Components/Dashboard/WalletConnect.jsx
+
+import { useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
 import { FaWallet, FaTimesCircle } from "react-icons/fa";
-import { useAuth } from "../../context/useAuth";
-import { useFlash } from "../../context/useFlash";
+import { useFlashMessage } from "../../Hooks/useFlashMessage";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { authTokenState } from "../../recoil/atoms/authAtom";
+import { walletAddressState } from "../../recoil/atoms/userAtom";
 
 const WalletConnect = () => {
-  const [walletAddress, setWalletAddress] = useState("");
+  const [walletAddress, setWalletAddress] = useRecoilState(walletAddressState);
   const [isConnecting, setIsConnecting] = useState(false);
   const [hovered, setHovered] = useState(false);
 
-  const { showFlash } = useFlash();
-  const { token } = useAuth();
-
-  // Load wallet address if already saved (fetch from backend)
-  useEffect(() => {
-    const getWallet = async () => {
-      try {
-        const res = await axios.get("http://localhost:3000/api/v1/user/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (res.data.walletAddress) {
-          setWalletAddress(res.data.walletAddress);
-        }
-      } catch (err) {
-        console.error("Failed to load wallet:", err);
-      }
-    };
-
-    getWallet();
-  }, [token]);
+  const { showFlash } = useFlashMessage();
+  const token = useRecoilValue(authTokenState);
 
   const connectWallet = async () => {
     setIsConnecting(true);
     try {
       if (!window.ethereum) {
-        showFlash("Please install MetaMask to connect.", "error");
+        showFlash("error", "Please install MetaMask to connect.");
         setIsConnecting(false);
         return;
       }
@@ -54,13 +39,12 @@ const WalletConnect = () => {
         }
       );
 
-      showFlash(res.data.message || "Wallet connected!", "success");
+      showFlash("success", res.data.message || "Wallet connected!");
       setWalletAddress(address);
     } catch (err) {
       console.error("Wallet connection error:", err);
-      showFlash(
-        err?.response?.data?.message || "Failed to connect wallet.",
-        "error"
+      showFlash("error",
+        err?.response?.data?.message || "Failed to connect wallet."
       );
     } finally {
       setIsConnecting(false);
@@ -73,9 +57,10 @@ const WalletConnect = () => {
         <button
           onClick={connectWallet}
           disabled={isConnecting}
-          className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          className={`flex items-center gap-2 px-4 py-2 ${isConnecting ? "bg-gray-400" : "bg-gradient-to-r from-purple-600 to-indigo-500"
+            } text-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300`}
         >
-          <FaWallet />
+          <FaWallet size={21} />
           {isConnecting ? "Connecting..." : "Connect Wallet"}
         </button>
       ) : (
