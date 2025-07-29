@@ -3,20 +3,37 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaSignInAlt, FaUserPlus, FaSignOutAlt, FaUserShield } from "react-icons/fa";
-import { useAuth } from "../../context/useAuth"; // ✅ useAuth hook
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { authTokenState, isAuthenticatedState } from "../../recoil/atoms/authAtom";
+import { walletAddressState } from "../../recoil/atoms/userAtom";
+import { logoutUser } from "../../utils/authUtils"
 import "./navbar.css";
+import { useFlashMessage } from "../../Hooks/useFlashMessage";
+import WalletConnect from "./WalletConnect";
+import { useWalletAddress } from "../../Hooks/useWalletAddress";
+import { useUserRole } from "../../Hooks/useUserRole";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, logout } = useAuth(); // ✅ grab auth state
+
+    useWalletAddress();
+    
+    useUserRole();
+
+    const { showFlash } = useFlashMessage();
+    const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
+    const walletAddress = useRecoilValue(walletAddressState);
+    const setAuthToken = useSetRecoilState(authTokenState);
     const [showNavbar, setShowNavbar] = useState(false);
+
 
     const handleShowNavbar = () => {
         setShowNavbar(!showNavbar);
     };
 
     const handleLogout = () => {
-        logout();
+        logoutUser({ setIsAuthenticated, setAuthToken });
+        showFlash("success", "User Logged Out successfully!");
         navigate("/"); // ✅ redirect to home
     };
 
@@ -41,10 +58,10 @@ const Navbar = () => {
                     <ul className="flex space-x-6 font-medium text-[#2c2045]">
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/about">About</NavLink></li>
-                        <li><NavLink to="/projects">Our Services</NavLink></li>
-                        <li><NavLink to="/about">Testimonial</NavLink></li>
-                        <li><NavLink to="/contact">Join Us</NavLink></li>
-                        <li><NavLink to="/contact">FAQs</NavLink></li>
+                        <li><NavLink to="/our-ervices">Our Services</NavLink></li>
+                        <li><NavLink to="/testimonial">Testimonial</NavLink></li>
+                        <li><NavLink to="/join-us">Join Us</NavLink></li>
+                        <li><NavLink to="/faqs">FAQs</NavLink></li>
                     </ul>
                 </div>
 
@@ -67,12 +84,11 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <button
-                                className="flex items-center gap-2 bg-[#2c2045] text-white px-4 py-2 rounded-md hover:bg-[#3a2c64] transition"
-                                onClick={() => navigate("/dashboard")}
-                            >
-                                <FaUserShield /> Dashboard
-                            </button>
+                            {(!walletAddress) ? (
+                                <WalletConnect />
+                            ) : (
+                                <div className="pulseDashButton hover:cursor-pointer" onClick={() => navigate("/dashboard")}><FaUserShield className="mr-2" size={20} /> Dashboard</div>
+                            )}
                             <button
                                 className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
                                 onClick={handleLogout}

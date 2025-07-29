@@ -1,11 +1,16 @@
-// /frontend/frontend/src/utils/ProtectedRoute.jsx
+// /frontend/frontend/src/utils/PublicOnlyRoute.jsx
 
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+
+import { useRecoilValue } from "recoil";
+
+import { isAuthenticatedState } from "../recoil/atoms/authAtom";
+
 import PropTypes from "prop-types";
 
+
 const PublicOnlyRoute = ({ children }) => {
-    const { isAuthenticated } = useAuth();
+    const isAuthenticated = useRecoilValue(isAuthenticatedState);
 
     if (isAuthenticated) {
         return <Navigate to="/dashboard" replace />;
@@ -17,4 +22,5 @@ const PublicOnlyRoute = ({ children }) => {
 PublicOnlyRoute.propTypes = {
     children: PropTypes.node.isRequired,
 };
+
 export default PublicOnlyRoute;

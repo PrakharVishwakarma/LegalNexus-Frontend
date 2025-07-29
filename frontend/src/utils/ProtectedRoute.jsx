@@ -1,20 +1,34 @@
 // /frontend/frontend/src/utils/ProtectedRoute.jsx
 
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+
+import { useRecoilValue } from "recoil";
+
+import { isAuthenticatedState } from "../recoil/atoms/authAtom";
+
+import { walletAddressState,  } from "../recoil/atoms/userAtom";
+
 import PropTypes from "prop-types";
 
+
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useAuth();
+    const isAuthenticated = useRecoilValue(isAuthenticatedState);
+    const walletAddress = useRecoilValue(walletAddressState);
 
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }
+    
+    if (!walletAddress) {
+        return <Navigate to="/" replace />;
+    }
 
-    return children;
+    return <>
+        {children}
+    </>
+    
 };
 
-// ✅ Prop validation
 ProtectedRoute.propTypes = {
     children: PropTypes.node.isRequired,
 };

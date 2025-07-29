@@ -1,12 +1,14 @@
-import NavBarDash from "../Components/Dashboard/NavBarDash";
-import FlashMessage from "../Components/common/FlashMessage";
 
+// import CaseCard from "../Components/Cases/CaseCard";
 
 const Dashboard = () => {
-  return (<div style={{backgroundColor:'lavender', minHeight:'100vh'}}>
-      <FlashMessage/>
-      <NavBarDash />
-  </div>
+  return (<>
+    {/* <NavBarDash></NavBarDash>
+    <Sidebar></Sidebar> */}
+    <div style={{ backgroundColor: 'lavender', minHeight: '100vh' }}>
+      {/* <CaseCard /> */}
+    </div>
+  </>
   );
 };
 

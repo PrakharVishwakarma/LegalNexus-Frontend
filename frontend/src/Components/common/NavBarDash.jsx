@@ -3,16 +3,25 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBell, FaUserCircle } from "react-icons/fa";
-import { useAuth } from "../../context/useAuth";
-import WalletConnect from "./WalletConnect";
+import { useSetRecoilState } from "recoil";
+import { authTokenState, isAuthenticatedState } from "../../recoil/atoms/authAtom";
+import { userRoleState, userIdState, walletAddressState } from "../../recoil/atoms/userAtom";
+import { logoutUser } from "../../utils/authUtils";
+import { useFlashMessage } from '../../Hooks/useFlashMessage'
 
 const NavBarDash = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { showFlash } = useFlashMessage();
+
+  const setAuthToken = useSetRecoilState(authTokenState);
+  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+  const setUserRole = useSetRecoilState(userRoleState);
+  const setUserId = useSetRecoilState(userIdState);
+  const setWalletAddress = useSetRecoilState(walletAddressState);
 
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
-
+ 
   const profileRef = useRef();
   const notifRef = useRef();
 
@@ -35,32 +44,36 @@ const NavBarDash = () => {
   }, []);
 
   const handleLogout = () => {
-    logout();
+    logoutUser({
+      setAuthToken, setIsAuthenticated, resetUserStates: () => {
+        setUserRole(null);
+        setUserId(null);
+        setWalletAddress(null);
+      },
+    });
     navigate("/");
+    showFlash("success", "User Logged out successfully");
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 shadow-lg text-white relative">
+    <nav className="bg-gradient-to-t from-blue-600 to-purple-500 p-4 shadow-lg text-white sticky top-0 left-0 w-full z-50"> 
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-2xl font-bold tracking-wide">Legal Nexus</h1>
-
-        {/* wallet */}
-        <WalletConnect/>
+        <h1 className="text-2xl font-bold tracking-wide ml-16">Legal Nexus</h1>
 
         {/* Right Side Icons */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 ">
           {/* Notification Icon */}
           <div className="relative" ref={notifRef}>
             <button
               onClick={() => setShowNotificationDropdown(!showNotificationDropdown)}
-              className="text-xl relative hover:text-yellow-300 transition duration-200"
+              className="text-xl relative hover:text-yellow-300 hover:scale-110 transition duration-200"
               aria-label="Notifications"
             >
-              <FaBell />
+              <FaBell size={24} />
             </button>
             {showNotificationDropdown && (
-              <div className="absolute right-0 mt-2 w-80 bg-white/30 backdrop-blur-md text-black rounded-lg shadow-xl p-4 z-20">
+              <div className="absolute right-0 mt-4 w-80 bg-white/30 backdrop-blur-md text-black rounded-lg shadow-xl p-4 z-20">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="font-semibold text-lg">Notifications</h3>
                   <button onClick={() => setShowNotificationDropdown(false)} className="text-xl font-bold">
@@ -85,13 +98,13 @@ const NavBarDash = () => {
           <div className="relative" ref={profileRef}>
             <button
               onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-              className="text-2xl hover:text-yellow-300 transition duration-200"
+              className="text-2xl hover:text-yellow-200 hover:scale-110 transition duration-200"
               aria-label="User Profile"
             >
-              <FaUserCircle />
+              <FaUserCircle size={24} />
             </button>
             {showProfileDropdown && (
-              <div className="absolute right-0 mt-2 w-56 bg-white/30 backdrop-blur-md text-black rounded-lg shadow-xl p-4 z-20">
+              <div className="absolute right-0 mt-4 w-56 bg-white/30 backdrop-blur-md text-black rounded-lg shadow-xl p-4 z-20">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="font-semibold text-lg">Settings</h3>
                   <button onClick={() => setShowProfileDropdown(false)} className="text-xl font-bold">
@@ -129,3 +142,5 @@ const NavBarDash = () => {
 };
 
 export default NavBarDash;
+
+

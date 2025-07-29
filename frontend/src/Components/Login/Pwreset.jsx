@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const Pwreset = () => {
       const response = await axios.post('http://localhost:3000/api/v1/user/forgot-password/request-reset', {
         phoneNumber,
       });
-      setFlashMessage({ type: 'success', text: 'Reset code resent successfully.' });
+      setFlashMessage({ type: 'success', text: response.data.message });
       setTimer(120); // Reset timer
       setIsResendVisible(false); // Hide resend button
     } catch (error) {

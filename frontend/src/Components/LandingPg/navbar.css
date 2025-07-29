@@ -15,7 +15,7 @@
   align-items: center;
   max-width: 100%;
   margin: 0 auto;
-  
+
 }
 
 .logo {
@@ -109,6 +109,7 @@
     display: none;
   }
 }
+
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
@@ -153,5 +154,32 @@
   .auth-buttons .btn-signup {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
+  }
+}
+
+
+
+.pulseDashButton {
+  width: 9.5rem;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  background: #2c2045;
+  /* border-radius: 50px; */
+  border-radius: 0.4rem;
+  animation: shadow-pulse 1.5s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(33, 129, 238, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 7px 25px rgba(0, 112, 244, 0);
   }
 }
