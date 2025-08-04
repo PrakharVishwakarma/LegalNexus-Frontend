@@ -7,12 +7,13 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { BsCalendar3Week } from "react-icons/bs";
 import { FiAlertCircle } from "react-icons/fi";
 import { memo } from "react";
-import "./CaseCard.css"; 
 import { Link } from "react-router-dom";
+
+// import "./CaseCard.css"; // ❌ removed external CSS
 
 const angle = 5;
 
-const lerp = (start, end, amount) => (1 - amount) * start + amount * end;
+const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
 const remap = (value, oldMax, newMax) => {
   const newValue = ((value + oldMax) * (newMax * 2)) / (oldMax * 2) - newMax;
@@ -31,12 +32,12 @@ const CaseCard = memo(({ caseData }) => {
   useEffect(() => {
     const card = cardRef.current;
 
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (e) => {
       const rect = card.getBoundingClientRect();
       const centerX = (rect.left + rect.right) / 2;
       const centerY = (rect.top + rect.bottom) / 2;
-      const posX = event.pageX - centerX;
-      const posY = event.pageY - centerY;
+      const posX = e.pageX - centerX;
+      const posY = e.pageY - centerY;
       targetRotateX.current = remap(posY, rect.height / 2, angle);
       targetRotateY.current = remap(posX, rect.width / 2, angle);
     };
@@ -47,18 +48,10 @@ const CaseCard = memo(({ caseData }) => {
     };
 
     const update = () => {
-      currentRotateX.current = lerp(
-        currentRotateX.current,
-        targetRotateX.current,
-        0.1
-      );
-      currentRotateY.current = lerp(
-        currentRotateY.current,
-        targetRotateY.current,
-        0.1
-      );
-      card.style.setProperty("--rotateX", `${-currentRotateX.current}deg`);
-      card.style.setProperty("--rotateY", `${currentRotateY.current}deg`);
+      currentRotateX.current = lerp(currentRotateX.current, targetRotateX.current, 0.1);
+      currentRotateY.current = lerp(currentRotateY.current, targetRotateY.current, 0.1);
+      card.style.setProperty("--tw-rotate-x", `${-currentRotateX.current}deg`);
+      card.style.setProperty("--tw-rotate-y", `${currentRotateY.current}deg`);
       requestAnimationFrame(update);
     };
 
@@ -72,55 +65,58 @@ const CaseCard = memo(({ caseData }) => {
     };
   }, []);
 
-  const getStatusColor = (status) => {
-    return status
+  const getStatusColor = (status) =>
+    status
       ? "bg-green-50 text-green-700 border-green-200"
       : "bg-blue-50 text-blue-700 border-blue-200";
-  };
 
-  const getStatusIcon = (status) => {
-    return status ? (
+  const getStatusIcon = (status) =>
+    status ? (
       <IoIosCheckmarkCircleOutline className="w-4 h-4" />
     ) : (
       <FiAlertCircle className="w-4 h-4" />
     );
-  };
 
-  return (<Link to={`/cases/${caseData._id}`} className="block group">
-    <div className="card border-left-behind" ref={cardRef}>
-      <div className="content">
-        <div className="group bg-white shadow-sm hover:shadow-xl rounded-xl p-6 border border-gray-100 hover:border-gray-200 cursor- relative">
-          {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                {title}
-              </h2>
-            </div>
+  return (
+    <Link to={`/cases/${caseData._id}`} className="block group">
+      <div
+        ref={cardRef}
+        className="relative w-[28rem] h-[15rem] transition-transform duration-100 ease-out"
+        style={{
+          transformStyle: "preserve-3d",
+          transform: `rotateX(var(--tw-rotate-x, 0deg)) rotateY(var(--tw-rotate-y, 0deg))`,
+        }}
+      >
+        <div className="absolute inset-0 z-10 flex flex-col justify-between bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300">
+          {/* Title & Status */}
+          <div className="flex items-start justify-between mb-3">
+            <h2 className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+              {title}
+            </h2>
             <div
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border ${getStatusColor(isClosed)}`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border ${getStatusColor(
+                isClosed
+              )}`}
             >
               {getStatusIcon(isClosed)}
               {isClosed ? "Closed" : "Active"}
             </div>
           </div>
 
-          {/* Court Information */}
-          <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
-            <div className="flex-shrink-0">
-              <BsCalendar3Week className="w-5 h-5 text-gray-600" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-600 mb-1">Court</p>
+          {/* Court Name */}
+          <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-3">
+            <BsCalendar3Week className="w-5 h-5 text-gray-600" />
+            <div className="min-w-0">
+              <p className="text-sm text-gray-600">Court</p>
               <p className="text-gray-900 font-semibold truncate">
                 {courtName || "Court Not Specified"}
               </p>
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+          {/* Created At */}
+          <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-200">
+            <div className="flex items-center gap-2">
               <SlCalender className="w-4 h-4" />
               <span>Created</span>
             </div>
@@ -132,13 +128,13 @@ const CaseCard = memo(({ caseData }) => {
               })}
             </time>
           </div>
-
-          {/* Hover Effect Indicator */}
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </div>
+
+        {/* Glow Hover Overlay */}
+        <div className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
-    </div>
-  </Link>)
+    </Link>
+  );
 });
 
 CaseCard.displayName = "CaseCard";

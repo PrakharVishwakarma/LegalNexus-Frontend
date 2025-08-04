@@ -3,26 +3,38 @@
 import { useState, useEffect } from "react";
 import "./OurServe.css";
 import serveSvg1 from "../../assets/serveSvg1.svg";
-import serveJpg2 from "../../assets/serveJpg2.jpg";
-import serveJpg3 from "../../assets/serveJpeg3.jpg";
+import file from "../../assets/file.svg";
+import OurServe3 from "../../assets/OurServe3.svg";
+import OurServe5 from "../../assets/OurServe5.svg";
+
 
 const slides = [
   {
-    image: serveSvg1,
-    title: "Shaun Matthews",
-    caption: "Lorem Ipsum has been the industry's standard dummy text...",
+    image: serveSvg1, // Or any SVG that fits visually
+    title: "Smart Case Management",
+    caption:
+      "Easily create, manage, and track legal cases with secure role-based access. Organize everything in one place with clarity and precision.",
   },
   {
-    image: serveJpg2,
-    title: "Alexis Berry",
-    caption: "Lorem Ipsum has been the industry's standard dummy text...",
+    image: file, // Use a symbolic file or doc illustration
+    title: "Secure Document Handling",
+    caption:
+      "Upload, organize, and view legal case files seamlessly. Every document is safely stored and versioned with access control at every step.",
   },
   {
-    image: serveJpg3,
-    title: "Billie Pierce",
-    caption: "Lorem Ipsum has been the industry's standard dummy text...",
+    image: OurServe3, // Visual related to lock/shield for access
+    title: "Granular Access Control",
+    caption:
+      "Control who can view, edit, or delete documents and cases. Assign permissions to judges, lawyers, police, or civilians — all in real time.",
+  },
+  {
+    image: OurServe5, // IPFS or blockchain-themed visual
+    title: "Blockchain-Backed Evidence",
+    caption:
+      "Every case and file is timestamped and stored on blockchain with IPFS integration, ensuring tamper-proof legal history and accountability.",
   },
 ];
+
 
 const OurServe = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,7 +44,7 @@ const OurServe = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-    }, 4000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [totalSlides]);
@@ -60,7 +72,7 @@ const OurServe = () => {
             className={`slide ${index === currentSlide ? "active" : ""}`}
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="content">
+            <div className="content bg-black/70 rounded-xl text-center px-4 py-6 shadow-md text-white w-[35rem]">
               <h2 className="title">{slide.title}</h2>
               <p className="caption">{slide.caption}</p>
             </div>

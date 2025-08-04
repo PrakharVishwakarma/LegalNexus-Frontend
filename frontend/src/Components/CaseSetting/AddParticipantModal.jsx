@@ -8,6 +8,7 @@ import { useDebounce } from "../../Hooks/useDebounce";
 import PropTypes from "prop-types";
 import { authTokenState } from "../../recoil/atoms/authAtom";
 import { useRecoilValue } from "recoil";
+import { useFlashMessage } from "../../Hooks/useFlashMessage";
 
 const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
     const [query, setQuery] = useState("");
@@ -15,7 +16,7 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [permissions, setPermissions] = useState({ canView: true, canUpload: false });
     const debouncedQuery = useDebounce(query, 250);
-    const [message, setMessage] = useState(null);
+    const { showFlash } = useFlashMessage();
     const token = useRecoilValue(authTokenState);
 
     useEffect(() => {
@@ -31,8 +32,7 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
                 }
             ).then((res) => {
                 setSearchResults(res.data)
-            })
-                .catch(() => setMessage("❌ Failed to fetch users"));
+            }).catch((err) => console.log(err));
         } else {
             setSearchResults([]);
         }
@@ -55,19 +55,17 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
             return res.data;
         },
         onSuccess: () => {
-            setMessage("✅ Participant added successfully");
             refetch();
-            setTimeout(() => {
-                handleClose();
-            }, 1500);
+            handleClose();
+            showFlash("success", "✅ Participant added successfully");
         },
         onError: (err) => {
-            setMessage(err?.response?.data?.message || "❌ Failed to add participant");
+            showFlash("error", err?.response?.data?.message || "❌ Failed to add participant");
         },
     });
 
     const handleSubmit = () => {
-        if (!selectedUser) return setMessage("⚠️ Please select a user");
+        if (!selectedUser) return showFlash("warning", "⚠️ Please select a user");
         grantAccessMutation.mutate();
     };
 
@@ -76,7 +74,6 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
         setSelectedUser(null);
         setSearchResults([]);
         setPermissions({ canView: true, canUpload: false });
-        setMessage(null);
         onClose();
     };
 
@@ -87,11 +84,6 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
             <div className="bg-white rounded-md p-6 w-full max-w-2xl shadow-lg relative min-h-80 flex flex-col justify-between">
                 <div>
                     <h2 className="text-xl font-semibold mb-4">Add Participant</h2>
-                    {message && (
-                        <div className="text-sm mb-3 px-3 py-2 rounded bg-gray-100 text-gray-800 border">
-                            {message}
-                        </div>
-                    )}
 
                     <input
                         type="text"
@@ -149,7 +141,7 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
                         Cancel
                     </button>
                     <button
-                        disabled={!selectedUser || grantAccessMutation.isLoading}
+                        disabled={!selectedUser || grantAccessMutation.isPending}
                         onClick={handleSubmit}
                         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
                     >

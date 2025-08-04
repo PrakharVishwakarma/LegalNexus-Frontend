@@ -76,9 +76,7 @@ const SignIn = () => {
               className="shadow-lg focus:shadow-none"
               {...register("identifier", { required: "User ID is required" })}
             />
-            {errors.identifier && (
-              <p className="text-red-600 text-sm">{errors.identifier.message}</p>
-            )}
+            
           </label>
         ) : (
           <label>
@@ -89,9 +87,7 @@ const SignIn = () => {
               className="shadow-lg focus:shadow-none"
               {...register("identifier", { required: "Employee ID is required" })}
             />
-            {errors.identifier && (
-              <p className="text-red-600 text-sm">{errors.identifier.message}</p>
-            )}
+            
           </label>
         )}
 
@@ -107,9 +103,7 @@ const SignIn = () => {
               minLength: { value: 6, message: "Password must be at least 6 characters" },
             })}
           />
-          {errors.password && (
-            <p className="text-red-600 text-sm">{errors.password.message}</p>
-          )}
+          
         </label>
 
         <button type="submit" className="p-[3px] relative w-44">

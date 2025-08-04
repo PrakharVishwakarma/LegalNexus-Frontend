@@ -5,10 +5,12 @@ import { useState } from "react";
 import axios from "axios";
 import { authTokenState } from "../../recoil/atoms/authAtom";
 import { useRecoilValue } from "recoil";
+import { useFlashMessage } from "../../Hooks/useFlashMessage";
 
 const ConfirmDeleteModal = ({ participant, caseId, onClose, onSuccess }) => {
     const [loading, setLoading] = useState(false);
     const token = useRecoilValue(authTokenState);
+    const { showFlash } = useFlashMessage();
 
     const handleRevoke = async () => {
         try {
@@ -20,10 +22,11 @@ const ConfirmDeleteModal = ({ participant, caseId, onClose, onSuccess }) => {
                     },
                 }
             );
+            showFlash("success", "Access revoked successfully");
             onSuccess();
         } catch (err) {
             console.error("Revoke failed", err);
-            
+            showFlash("error", err?.response?.data?.message || "Revoke failed");
         } finally {
             setLoading(false);
         }

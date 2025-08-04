@@ -61,7 +61,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 name: 'Cases',
                 icon: GoLaw,
                 path: '/cases',
-                allowedRoles: ['Judge', 'Lawyer', 'Police'] // Civilians cannot access cases
+                allowedRoles: ['Judge', 'Lawyer', 'Police', 'Civilian']
             },
             {
                 name: 'Personal Documents',

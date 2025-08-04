@@ -2,12 +2,14 @@
 
 import { useParams } from "react-router-dom";
 import { useCaseDetails } from "../../Hooks/useCaseDetails";
-import CaseMetadataPanel from "./CaseMetadataPanel";
 import { useCaseAccess } from "../../context/useCaseAccess";
 import { useNavigate } from "react-router-dom";
 import { useFlashMessage } from "../../Hooks/useFlashMessage";
 import { useEffect } from "react";
+
+import CaseMetadataPanel from "./CaseMetadataPanel";
 import ParticipantPanel from "./ParticipantPanel";
+import MigrateAdminPanel from "./MigrateAdminPanel ";
 
 const SettingsContent = () => {
     const { caseId } = useParams();
@@ -18,7 +20,7 @@ const SettingsContent = () => {
 
     const { caseData, adminData, refetch, loading, error } = useCaseDetails(caseId);
 
-    const { hasUserViewAccess, caseAccessLoading } = useCaseAccess();
+    const { hasUserViewAccess, caseAccessLoading, isUserCaseAdmin } = useCaseAccess();
 
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const SettingsContent = () => {
             showFlash("error", "You do not have access to view this case.");
 
         }
-    }, [hasUserViewAccess, caseAccessLoading, loading, navigate]);
+    }, [hasUserViewAccess, caseAccessLoading, loading]);
 
     if (loading) return (
         <div className="flex justify-center items-center h-40">
@@ -51,6 +53,10 @@ const SettingsContent = () => {
                 caseId={caseId}
                 refetch={refetch}
             />
+            {
+                isUserCaseAdmin && <MigrateAdminPanel caseId={caseId} adminWallet={caseData.admin} />
+            }
+
         </div>
     );
 };

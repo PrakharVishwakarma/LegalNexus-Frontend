@@ -1,13 +1,14 @@
+/* frontend/src/Components/Cases/Card.css */
 .card {
   position: relative;
   height: 15rem;
   width: 28rem;
   color: #ffffff;
   /* perspective: 1000px; */
-  transform-style: preserve-3d;
-  --rotateX: 0deg;
-  --rotateY: 0deg;
-  transition: transform 0.1s ease-out;
+  /* transform-style: preserve-3d; */
+  /* --rotateX: 0deg; */
+  /* --rotateY: 0deg; */
+  /* transition: transform 0.1s ease-out; */
 }
 
 .card .content {
@@ -17,9 +18,9 @@
   justify-content: center;
   inset: 0;
   /* padding: 2.5rem; */
-  /* background: rgba(0, 0, 0, 0.3); */
+  /* background: rgba(0, 0, 0, 0.3);
   transform: rotateX(var(--rotateX)) rotateY(var(--rotateY)) translate3d(0, 0, 6rem);
-  z-index: 4;
+  z-index: 4; */
   pointer-events: none;
 }
 
@@ -28,18 +29,18 @@
   content: "";
   position: absolute;
   inset: 1.5rem;
-  /* border: #e2c044 0.5rem solid; */
+  border: #e2c044 0.5rem solid;
   transform: rotateX(var(--rotateX)) rotateY(var(--rotateY)) translate3d(0, 0, 2rem);
   pointer-events: none;
 }
 
-.card::before {
+/* .card::before {
   z-index: 4;
-}
+} */
 
-.card.border-left-behind::before {
+/* .card.border-left-behind::before {
   border-left: transparent;
-}
+} */
 
 h2 {
   font-size: 1.25rem;

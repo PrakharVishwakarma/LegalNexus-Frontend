@@ -33,7 +33,7 @@ const useCaseDocuments = (caseId, queryParams) => {
     queryKey: ["case-documents", caseId, ...Object.values(queryParams)],
     queryFn: () => fetchCaseDocuments(caseId, queryParams, authToken),
     keepPreviousData: true,
-    staleTime: 1000 * 60 * 5, // cache for 5 minutes
+    staleTime: 1000 * 60 * 5, 
     enabled: !!caseId && !!authToken,
   });
 };

@@ -44,7 +44,7 @@ const VerifyOtp = () => {
       setTimer(60); // Reset timer
       setIsResendVisible(false); // Hide resend button
     } catch (error) {
-      setFlashMessage({ type: 'error', text: 'Failed to resend OTP' });
+      setFlashMessage({ type: 'error', text: error.response.data.message || 'Failed to resend OTP' });
     }
   };
 
