@@ -118,7 +118,7 @@ const AccessControlPanel = ({ caseId, docId, currentUserPermissions }) => {
                                 </div>
                                 <div className="flex justify-center items-center gap-4">
                                     <div className="text-sm text-gray-500 text-center">
-                                        {user.phoneNumber}
+                                        {user.phoneNumber.slice(3, 7)}...{user.phoneNumber.slice(-2)}
                                     </div>
                                     <div className="text-sm text-gray-500">
                                         Wallet: {user.wallet.slice(0, 10)}....{user.wallet.slice(-12)}

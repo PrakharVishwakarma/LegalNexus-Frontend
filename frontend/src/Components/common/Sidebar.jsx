@@ -264,7 +264,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 {/* User Info Section (if expanded) */}
                 {isOpen && (
                     <div className="px-4 py-2 border-t border-slate-700">
-                        <div className="text-xs text-slate-400 mb-1">Access Level:</div>
+                        <div className="flex items-center justify-between">
+                            <div className="text-xs text-slate-400 mb-1">Access Level:</div>
+                            <div className='text-sm text-slate-300 m-1'> {userRole}</div>
+                        </div>
                         <div className="text-sm font-medium text-slate-200">
                             {userRole === 'Civilian' ? 'Limited Access' : 'Full Access'}
                         </div>
@@ -307,8 +310,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 };
 
 Sidebar.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  setIsOpen: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    setIsOpen: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

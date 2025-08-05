@@ -50,7 +50,6 @@ const GrantAccessModal = ({ onClose }) => {
                 setSearchResults(res.data || []);
             } catch (err) {
                 console.error("Search failed:", err);
-                showFlash("Failed to search users", "error");
             } finally {
                 setIsSearching(false);
             }

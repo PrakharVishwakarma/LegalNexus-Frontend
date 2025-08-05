@@ -6,9 +6,13 @@ import CaseList from "../Components/Cases/CaseList";
 import CaseFilters from "../Components/Cases/CaseFilters";
 import CaseSort from "../Components/Cases/CaseSort";
 import CasePagination from "../Components/Cases/CasePagination";
-import NewCase from "../Components/Cases/NewCase"; 
+import NewCase from "../Components/Cases/NewCase";
+import { userRoleState } from "../recoil/atoms/userAtom";
+import { useRecoilValue } from "recoil";
 
 const Cases = () => {
+    const userRole = useRecoilValue(userRoleState);
+
     const [filters, setFilters] = useState({
         isClosed: undefined,
         filterAdmin: undefined,
@@ -17,7 +21,7 @@ const Cases = () => {
         sortOrder: "desc",
     });
 
-    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const {
         cases,
@@ -46,13 +50,16 @@ const Cases = () => {
                             Efficiently manage and track your legal cases with our comprehensive case management system
                         </p>
                     </div>
+                    
                     {/* ✅ Create Case Button */}
+                    { (userRole === "Judge" || userRole === "Police" || userRole === "Police") && (
                     <button
                         onClick={() => setIsModalOpen(true)}
                         className="px-6 py-3 rounded-xl bg-white text-indigo-700 font-semibold shadow-md hover:bg-indigo-100 transition-all duration-200"
                     >
                         + Create Case
                     </button>
+                    )}
                 </div>
             </div>
 

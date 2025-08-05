@@ -12,12 +12,12 @@ const SearchUserResultCard = ({ user, onSelect, isSelected }) => {
     } = user;
 
     const bgColor = isSelected ? "bg-blue-100 border-blue-500" : "bg-white";
-    const hoverEffect = isSelected ? "" : "hover:bg-gray-50 cursor-pointer";
+
 
     return (
         <div
             onClick={() => onSelect(user)}
-            className={`flex items-center justify-between px-4 py-3 border rounded-md transition-all duration-150 ${bgColor} ${hoverEffect}`}
+            className={`flex items-center justify-between px-4 py-3 border rounded-md transition-all duration-150 hover:cursor-pointer ${bgColor}`}
         >
             <div className="flex flex-col gap-0.5 text-sm">
                 <div className="flex gap-8 flex-wrap text-gray-600 text-xs">
@@ -27,7 +27,7 @@ const SearchUserResultCard = ({ user, onSelect, isSelected }) => {
                     <div className="flex flex-col gap-1">
                         <div className="flex gap-4 flex-wrap text-gray-600 text-xs">
                             {userId ? <span>User ID: {userId}</span> : <span> Employee ID: {employeeId}</span>}
-                            <span>Phone: {phoneNumber}</span>
+                            <span>Phone: {phoneNumber.slice(3, 7)}...{phoneNumber.slice(-2)}</span>
                         </div>
                         <div className="flex gap-12 flex-wrap text-gray-600 text-xs">
 

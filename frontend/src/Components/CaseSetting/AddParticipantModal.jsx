@@ -99,7 +99,13 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
                                 key={user._id}
                                 user={user}
                                 isSelected={selectedUser?.walletAddress === user.walletAddress}
-                                onSelect={() => setSelectedUser(user)}
+                                onSelect={() =>{
+                                    if(selectedUser){
+                                        setSelectedUser(null);
+                                    }else {
+                                        setSelectedUser(user);
+                                    }
+                                } }
                             />
                         ))}
                     </div>

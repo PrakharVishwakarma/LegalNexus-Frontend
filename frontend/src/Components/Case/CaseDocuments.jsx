@@ -30,7 +30,7 @@ const CaseDocuments = () => {
     const pagination = data?.pagination;
 
     return (
-        <div className="mt-10 space-y-6 bg-gradient-to-t from-[#6375a7] to-[#d0e3e9] rounded-3xl shadow-lg p-8 w-full mx-auto border border-gray-100 relative overflow-hidden">
+        <div className="mt-10 space-y-6 bg-gradient-to-t from-[#9cb2ef] to-[#cfedf6] rounded-3xl shadow-lg p-8 w-full mx-auto border border-gray-100 relative overflow-hidden">
 
             <div className="flex flex-wrap gap-4 justify-between items-center border border-gray-200 p-4 rounded-xl shadow bg-slate-800 bg-opacity-20">
                 <SearchByTitle />
