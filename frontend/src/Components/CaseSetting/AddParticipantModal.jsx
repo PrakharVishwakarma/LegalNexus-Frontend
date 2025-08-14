@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { authTokenState } from "../../recoil/atoms/authAtom";
 import { useRecoilValue } from "recoil";
 import { useFlashMessage } from "../../Hooks/useFlashMessage";
+import SpinnerLoader2 from "../common/SpinnerLoader2";
 
 const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
     const [query, setQuery] = useState("");
@@ -142,16 +143,16 @@ const AddParticipantModal = ({ isOpen, onClose, caseId, refetch }) => {
                 <div className="mt-6 flex justify-center gap-3">
                     <button
                         onClick={handleClose}
-                        className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                        className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 min-w-20"
                     >
                         Cancel
                     </button>
                     <button
                         disabled={!selectedUser || grantAccessMutation.isPending}
                         onClick={handleSubmit}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 min-w-20 flex items-center justify-center"
                     >
-                        {grantAccessMutation.isLoading ? "Adding..." : "Done"}
+                        {grantAccessMutation.isPending ?  <SpinnerLoader2/> : "Done" }
                     </button>
                 </div>
             </div>

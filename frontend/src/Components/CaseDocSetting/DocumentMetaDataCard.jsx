@@ -22,7 +22,7 @@ const DocumentMetaDataCard = ({ document }) => {
           <span className="font-medium">Title:</span> {title}
         </div>
         <div>
-          <span className="font-medium">Uploaded By:</span> {uploadedBy}
+          <span className="font-medium">Uploaded By:</span> {uploadedBy.slice(0, 12)}.....{uploadedBy.slice(-6)}
         </div>
         <div>
           <span className="font-medium">Created At:</span>{" "}

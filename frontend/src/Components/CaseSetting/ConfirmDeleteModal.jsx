@@ -6,6 +6,7 @@ import axios from "axios";
 import { authTokenState } from "../../recoil/atoms/authAtom";
 import { useRecoilValue } from "recoil";
 import { useFlashMessage } from "../../Hooks/useFlashMessage";
+import SpinnerLoader2 from "../common/SpinnerLoader2";
 
 const ConfirmDeleteModal = ({ participant, caseId, onClose, onSuccess }) => {
     const [loading, setLoading] = useState(false);
@@ -41,16 +42,16 @@ const ConfirmDeleteModal = ({ participant, caseId, onClose, onSuccess }) => {
                 <div className="flex justify-end space-x-2 mt-6">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                        className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 min-w-20"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={handleRevoke}
                         disabled={loading}
-                        className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                        className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 min-w-20 flex justify-center"
                     >
-                        {loading ? "Revoking..." : "Revoke"}
+                        {loading ? <SpinnerLoader2/> : "Revoke" }
                     </button>
                 </div>
             </div>

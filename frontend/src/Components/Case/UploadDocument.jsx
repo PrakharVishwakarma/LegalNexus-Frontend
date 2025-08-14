@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { MdOutlineUploadFile } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { useUploadDocument } from "../../Hooks/useUploadDocument";
+import SpinnerLoader3 from "../common/SpinnerLoader3";
+
 
 const UploadDocument = ({ isOpen, onClose, caseId }) => {
   const {
@@ -123,17 +125,21 @@ const UploadDocument = ({ isOpen, onClose, caseId }) => {
                 onClose();
                 reset();
               }}
-              className="px-4 py-2 border border-gray-400 text-sm rounded hover:bg-gray-200 hover:scale-105"
+              className="px-4 py-2 border border-gray-400 text-sm rounded hover:bg-gray-200 hover:scale-105 min-w-[7rem] min-h-[2.75rem]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isUploading}
-              className="px-4 py-2 bg-indigo-600 text-white text-sm rounded hover:bg-gradient-to-b hover:from-indigo-600 hover:to-indigo-900 flex items-center gap-2 hover:shadow-md hover:shadow-slate-500"
+              className="px-4 py-2 bg-indigo-600 text-white text-sm rounded hover:bg-gradient-to-b hover:from-indigo-600 hover:to-indigo-900 gap-2 hover:shadow-md hover:shadow-slate-500 min-w-[7rem] min-h-[2.75rem] flex justify-center"
             >
-              <MdOutlineUploadFile size={22} className="hover:animate-pulse" />
-              {isUploading ? "Uploading..." : "Upload"}
+
+            { isUploading ? <SpinnerLoader3 /> : 
+              <div className="flex items-center gap-2 ">
+              <MdOutlineUploadFile size={22} className="hover:animate-pulse" /> <p>Upload</p>
+              </div>  
+            }
             </button>
           </div>
         </form>

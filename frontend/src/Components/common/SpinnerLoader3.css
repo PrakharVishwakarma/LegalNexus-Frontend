@@ -1,0 +1,25 @@
+.spinnerLoader3 {
+  width: 1.7rem;
+  aspect-ratio: 1;
+  display: grid;
+  border: 0.15rem solid #0000;
+  border-radius: 50%;
+  border-right-color: #72ffea;
+  animation: l15 1s infinite linear;
+}
+.spinnerLoader3::before,
+.spinnerLoader3::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.spinnerLoader3::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+@keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}

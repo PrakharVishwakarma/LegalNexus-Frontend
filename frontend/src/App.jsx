@@ -10,8 +10,8 @@ import FlashMessage from './Components/common/FlashMessage';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
-
 const queryClient = new QueryClient()
+
 
 function App() {
   return (

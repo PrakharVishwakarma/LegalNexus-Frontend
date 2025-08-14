@@ -77,9 +77,7 @@ function AllRoutes() {
                 <Route path="/password-reset" element={<Resetpw />} />
 
                 {/* Protected Routes (only if logged in) */}
-                <Route path="/userprofile" element={
-                    <ProtectedRoute><UserProfile /></ProtectedRoute>
-                } />
+
                 {/* <Route path="/dashboard" element={
                     <ProtectedRoute><Dashboard /></ProtectedRoute>
                 } />
@@ -113,7 +111,7 @@ function AllRoutes() {
                         path="/cases/:caseId"
                         element={
                             <ProtectedRoute>
-                                <Case/>
+                                <Case />
                             </ProtectedRoute>
                         }
                     />
@@ -121,7 +119,7 @@ function AllRoutes() {
                         path="/cases/:caseId/settings"
                         element={
                             <ProtectedRoute>
-                                <CaseSettings/>
+                                <CaseSettings />
                             </ProtectedRoute>
                         }
                     />
@@ -129,7 +127,7 @@ function AllRoutes() {
                         path="/cases/:caseId/doc/:docId/settings"
                         element={
                             <ProtectedRoute>
-                                <CaseDocSettings/>
+                                <CaseDocSettings />
                             </ProtectedRoute>
                         }
                     />
@@ -149,6 +147,9 @@ function AllRoutes() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/userprofile" element={
+                        <ProtectedRoute><UserProfile /></ProtectedRoute>
+                    } />
                 </Route>
             </Routes>
         </Router>

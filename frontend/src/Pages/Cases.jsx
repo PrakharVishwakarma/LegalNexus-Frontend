@@ -52,7 +52,7 @@ const Cases = () => {
                     </div>
                     
                     {/* ✅ Create Case Button */}
-                    { (userRole === "Judge" || userRole === "Police" || userRole === "Police") && (
+                    { (userRole === "Judge" || userRole === "Police" || userRole === "Police" || userRole === "Lawyer") && (
                     <button
                         onClick={() => setIsModalOpen(true)}
                         className="px-6 py-3 rounded-xl bg-white text-indigo-700 font-semibold shadow-md hover:bg-indigo-100 transition-all duration-200"

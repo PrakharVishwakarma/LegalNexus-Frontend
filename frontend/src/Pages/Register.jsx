@@ -1,7 +1,5 @@
 import SignUpform from "../Components/Register/SignUpform";
 
-// import SignUpPng from '../assets/SignUonLN.png'
-
 import Navbar from "../Components/LandingPg/Navbar";
 
 import Lottie from "lottie-react";

@@ -5,7 +5,10 @@ import { useUpdateMetadata } from "../../Hooks/useUpdateMetadata";
 import PropTypes from "prop-types";
 import { IoClose } from "react-icons/io5";
 import { useEffect } from "react";
-const EditMetadataModal = ({ isOpen, onClose, initialData, caseId, onSuccess }) => {
+import SpinnerLoader2 from "../common/SpinnerLoader2";
+
+
+const EditMetadataModal = ({ isOpen, onClose, initialData, caseId, onSuccess }) => { 
     const {
         register,
         handleSubmit,
@@ -95,7 +98,7 @@ const EditMetadataModal = ({ isOpen, onClose, initialData, caseId, onSuccess }) 
                             disabled={isSubmitting}
                             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-60"
                         >
-                            {isSubmitting ? "Saving..." : "Save"}
+                            {isSubmitting ? <SpinnerLoader2/> : "Save"}
                         </button>
                     </div>
                 </form>

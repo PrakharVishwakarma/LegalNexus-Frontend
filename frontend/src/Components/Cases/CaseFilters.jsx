@@ -84,7 +84,7 @@ const CaseFilters = memo(({ filters, setFilters }) => {
                     <label
                         key={option.name}
                         className={`
-                            relative flex items-center gap-3 px-4 py-3 rounded-xl border-2 cursor-pointer
+                            relative flex items-center gap-3 px-2 py-2 rounded-xl border-2 cursor-pointer
                             transition-all duration-300 ease-in-out transform hover:scale-105
                             ${colorClasses.border} ${colorClasses.bgHover} ${colorClasses.borderHover}
                             ${isChecked ? 'shadow-lg ring-2 ring-offset-2 ring-' + option.color + '-200' : 'hover:shadow-md'}
